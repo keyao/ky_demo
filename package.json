@@ -1,0 +1,12 @@
+{
+  "name": "ky_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:micro": "cd micro-base & pnpm dev "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

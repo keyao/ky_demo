@@ -71,7 +71,8 @@
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue-tippy": "^6.4.1",
-    "vue-types": "^5.1.1"
+    "vue-types": "^5.1.1",
+    "wujie-vue3": "^1.0.22"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
@@ -142,8 +143,7 @@
       "domexception": "*",
       "w3c-hr-time": "*",
       "stable": "*",
-      "abab": "*",
-      "package-manager-strict":false
+      "abab": "*"
     }
   }
 }

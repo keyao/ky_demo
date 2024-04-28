@@ -22,8 +22,12 @@ import "element-plus/dist/index.css";
 import "./assets/iconfont/iconfont.js";
 import "./assets/iconfont/iconfont.css";
 
-const app = createApp(App);
+import WujieVue from 'wujie-vue3'
 
+const app = createApp(App);
+const { bus, setupApp, preloadApp, destroyApp } = WujieVue;
+
+app.use(WujieVue);
 // 自定义指令
 import * as directives from "@/directives";
 Object.keys(directives).forEach(key => {
