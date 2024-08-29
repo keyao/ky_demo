@@ -5,5 +5,5 @@ defineOptions({
 </script>
 
 <template>
-   <micro-app name='vue3-webpack-app' url='http://localhost:8080/' keep-alive></micro-app>
+   <micro-app name='vue3-webpack-app' url='http://localhost:8081/' keep-alive></micro-app>
 </template>

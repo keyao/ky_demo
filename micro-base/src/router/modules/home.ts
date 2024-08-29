@@ -3,7 +3,7 @@ const Layout = () => import("@/layout/index.vue");
 
 export default {
   path: "/",
-  name: "Home",
+  name: "vue3Vite",
   component: Layout,
   redirect: "/welcome",
   meta: {
