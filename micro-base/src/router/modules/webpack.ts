@@ -7,7 +7,7 @@ export default {
   redirect: "/vue3Webpack",
   meta: {
     icon: "ep:home-filled",
-    title: "vue-webpack项目",
+    title: "Vue项目",
     rank: 0
   },
   children: [
@@ -16,7 +16,7 @@ export default {
       name: "vue3Webpack",
       component: () => import("@/views/vue3Webpack/index.vue"),
       meta: {
-        title: "vue-webpack项目",
+        title: "Vue项目",
       }
     }
   ]

@@ -93,12 +93,20 @@ onBeforeUnmount(() => {
     @mouseenter.prevent="isShow = true"
     @mouseleave.prevent="isShow = false"
   >
-    <Logo v-if="showLogo" :collapse="isCollapse" />
+    <Logo v-if="showLogo" :collapse="true" />
     <el-scrollbar
       wrap-class="scrollbar-wrapper"
       :class="[device === 'mobile' ? 'mobile' : 'pc']"
     >
-      <el-menu
+      <ul class="router-ul">
+        <li v-for="routes in menuData"> 
+          <i>
+            <IconifyIconOnline  width="24px" height="24px" :icon="routes.meta?.icon"/>
+          </i>
+          <span>{{ routes.meta?.title }}</span>
+        </li> 
+       </ul>
+      <!-- <el-menu
         router
         unique-opened
         mode="vertical"
@@ -116,9 +124,9 @@ onBeforeUnmount(() => {
           :base-path="routes.path"
           class="outer-most select-none"
         />
-      </el-menu>
+      </el-menu> -->
     </el-scrollbar>
-    <CenterCollapse
+    <!-- <CenterCollapse
       v-if="device !== 'mobile' && (isShow || isCollapse)"
       :is-active="pureApp.sidebar.opened"
       @toggleClick="toggleSideBar"
@@ -127,12 +135,24 @@ onBeforeUnmount(() => {
       v-if="device !== 'mobile'"
       :is-active="pureApp.sidebar.opened"
       @toggleClick="toggleSideBar"
-    />
+    /> -->
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 :deep(.el-loading-mask) {
   opacity: 0.45;
+}
+.router-ul{
+  >li{
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    border-left: 3px solid #fff;
+  }
 }
 </style>
