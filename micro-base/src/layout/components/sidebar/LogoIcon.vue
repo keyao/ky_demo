@@ -30,7 +30,6 @@ const { title, getLogo } = useNav();
         :to="getTopMenu()?.path ?? '/'"
       >
         <img :src="getLogo()" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span>
       </router-link>
     </transition>
   </div>
@@ -42,13 +41,14 @@ const { title, getLogo } = useNav();
   width: 100%;
   height: 48px;
   overflow: hidden;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
   .sidebar-logo-link {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    height: 100%;
-    padding-left: 10px;
+    width: auto;
 
     img {
       display: inline-block;

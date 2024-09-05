@@ -372,19 +372,7 @@ onUnmounted(() => removeMatchMedia);
           <div />
           <div />
         </li>
-        <li
-          v-if="device !== 'mobile'"
-          ref="mixRef"
-          v-tippy="{
-            content: '混合菜单，灵活多变',
-            zIndex: 41000
-          }"
-          :class="layoutTheme.layout === 'mix' ? 'is-select' : ''"
-          @click="setLayoutModel('mix')"
-        >
-          <div />
-          <div />
-        </li>
+        
       </ul>
 
       <span v-if="useAppStoreHook().getViewportWidth > 1280">

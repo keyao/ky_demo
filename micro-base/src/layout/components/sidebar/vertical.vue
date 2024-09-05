@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Logo from "./logo.vue";
-import { useRoute } from "vue-router";
+import { useRoute,useRouter } from "vue-router";
 import { emitter } from "@/utils/mitt";
 import SidebarItem from "./sidebarItem.vue";
 import LeftCollapse from "./leftCollapse.vue";
@@ -11,8 +11,10 @@ import { storageLocal, isAllEmpty } from "@pureadmin/utils";
 import { findRouteByPath, getParentPaths } from "@/router/utils";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
-
+import LogoIcon from "./LogoIcon.vue";
+import { debug } from "node:console";
 const route = useRoute();
+const router = useRouter();
 const isShow = ref(false);
 const showLogo = ref(
   storageLocal().getItem<StorageConfigs>(
@@ -44,6 +46,14 @@ const loading = computed(() =>
 const defaultActive = computed(() =>
   !isAllEmpty(route.meta?.activePath) ? route.meta.activePath : route.path
 );
+const acitveNav = (route)=>{
+  if(route.path !== '/') {
+    return route.path === defaultActive.value
+  } else {
+    return route.redirect === defaultActive.value
+  }
+  
+}
 
 function getSubMenuData() {
   let path = "";
@@ -62,7 +72,10 @@ function getSubMenuData() {
   if (!parenetRoute?.children) return;
   subMenuData.value = parenetRoute?.children;
 }
-
+function goto(route){
+  
+  router.push(route.path === '/'? route.redirect:route.path)
+}
 watch(
   () => [route.path, usePermissionStoreHook().wholeMenus],
   () => {
@@ -93,15 +106,16 @@ onBeforeUnmount(() => {
     @mouseenter.prevent="isShow = true"
     @mouseleave.prevent="isShow = false"
   >
-    <Logo v-if="showLogo" :collapse="true" />
+    <LogoIcon></LogoIcon>
+    {{ defaultActive }}
     <el-scrollbar
       wrap-class="scrollbar-wrapper"
       :class="[device === 'mobile' ? 'mobile' : 'pc']"
     >
       <ul class="router-ul">
-        <li v-for="routes in menuData"> 
-          <i>
-            <IconifyIconOnline  width="24px" height="24px" :icon="routes.meta?.icon"/>
+        <li @click="goto(routes)" v-for="routes in menuData"   :class="[acitveNav(routes)?'border-l-white border-sky-500 text-sky-500':'']"> 
+          <i >
+            <IconifyIconOnline :class="[acitveNav(routes)?'acitv':'']" width="24px" height="24px" :icon="routes.meta?.icon"/>
           </i>
           <span>{{ routes.meta?.title }}</span>
         </li> 
@@ -145,6 +159,7 @@ onBeforeUnmount(() => {
 }
 .router-ul{
   >li{
+    cursor: pointer;
     font-size: 14px;
     text-align: center;
     display: flex;
@@ -152,7 +167,10 @@ onBeforeUnmount(() => {
     align-items: center;
     justify-content: center;
     padding: 12px 0;
-    border-left: 3px solid #fff;
+    >.acitv{
+      color:rgb(255 255 255 / var(--tw-border-opacity))
+    }
   }
+ 
 }
 </style>

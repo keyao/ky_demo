@@ -30,12 +30,6 @@ const {
       :is-active="pureApp.sidebar.opened"
       @toggleClick="toggleSideBar"
     />
-
-    <Breadcrumb
-      v-if="layout !== 'mix' && device !== 'mobile'"
-      class="breadcrumb-container"
-    />
-
     <mixNav v-if="layout === 'mix'" />
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
